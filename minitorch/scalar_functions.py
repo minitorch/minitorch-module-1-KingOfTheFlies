@@ -168,13 +168,13 @@ class ReLU(ScalarFunction):
     def forward(ctx: Context, a: float) -> float:
         # TODO: Implement for Task 1.2.
         ctx.save_for_backward(a)
-        return operators.relu(a)
+        return float(operators.relu(a))
 
     @staticmethod
     def backward(ctx: Context, d_output: float) -> float:
         # TODO: Implement for Task 1.4.
         (a,) = ctx.saved_values
-        return operators.relu_back(a, d_output)
+        return float(operators.relu_back(a, d_output))
 
 
 class Exp(ScalarFunction):
@@ -184,13 +184,13 @@ class Exp(ScalarFunction):
     def forward(ctx: Context, a: float) -> float:
         # TODO: Implement for Task 1.2.
         ctx.save_for_backward(a)
-        return operators.exp(a)
+        return float(operators.exp(a))
 
     @staticmethod
     def backward(ctx: Context, d_output: float) -> float:
         # TODO: Implement for Task 1.4.
         (a,) = ctx.saved_values
-        return operators.exp(a) * d_output
+        return float(operators.exp(a)) * d_output
 
 
 class LT(ScalarFunction):
