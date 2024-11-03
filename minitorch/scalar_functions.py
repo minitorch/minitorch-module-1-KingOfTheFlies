@@ -74,7 +74,7 @@ class Add(ScalarFunction):
 
     @staticmethod
     def forward(ctx: Context, a: float, b: float) -> float:
-        return a + b
+        return float(a + b)
 
     @staticmethod
     def backward(ctx: Context, d_output: float) -> Tuple[float, ...]:
@@ -87,12 +87,12 @@ class Log(ScalarFunction):
     @staticmethod
     def forward(ctx: Context, a: float) -> float:
         ctx.save_for_backward(a)
-        return operators.log(a)
+        return float(operators.log(a))
 
     @staticmethod
     def backward(ctx: Context, d_output: float) -> float:
         (a,) = ctx.saved_values
-        return operators.log_back(a, d_output)
+        return float(operators.log_back(a, d_output))
 
 
 # To implement.
@@ -121,13 +121,13 @@ class Inv(ScalarFunction):
     def forward(ctx: Context, a: float) -> float:
         # TODO: Implement for Task 1.2.
         ctx.save_for_backward(a)
-        return operators.inv(a)
+        return float(operators.inv(a))
 
     @staticmethod
     def backward(ctx: Context, d_output: float) -> float:
         # TODO: Implement for Task 1.4.
         (a,) = ctx.saved_values
-        return operators.inv_back(a, d_output)
+        return float(operators.inv_back(a, d_output))
 
 
 class Neg(ScalarFunction):
@@ -136,12 +136,12 @@ class Neg(ScalarFunction):
     @staticmethod
     def forward(ctx: Context, a: float) -> float:
         # TODO: Implement for Task 1.2.
-        return operators.neg(a)
+        return float(operators.neg(a))
 
     @staticmethod
     def backward(ctx: Context, d_output: float) -> float:
         # TODO: Implement for Task 1.4.
-        return operators.neg(d_output)
+        return float(operators.neg(d_output))
 
 
 class Sigmoid(ScalarFunction):
